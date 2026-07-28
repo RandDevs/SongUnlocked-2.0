@@ -1,0 +1,18 @@
+{
+  "name": "songunlocked-monorepo",
+  "private": true,
+  "description": "SongUnlocked PWA: Vanilla ES modules & React 18 ports side-by-side.",
+  "type": "module",
+  "scripts": {
+    "verify": "npm run check:sync && npm run check:vanilla && npm run check:react && npm run test:vanilla && npm run test:react && npm run build:vanilla && npm run build:react && npm run e2e:vanilla && npm run e2e:react",
+    "check:sync": "node scripts/check-sync.js",
+    "check:vanilla": "npm --prefix vanilla run check",
+    "test:vanilla": "npm --prefix vanilla test",
+    "e2e:vanilla": "npm --prefix vanilla run test:e2e",
+    "build:vanilla": "npm --prefix vanilla run build",
+    "check:react": "npm --prefix react run check",
+    "test:react": "npm --prefix react test",
+    "e2e:react": "npm --prefix react run test:e2e",
+    "build:react": "npm --prefix react run build"
+  }
+}

@@ -1,0 +1,119 @@
+/*
+  Design tokens — "Dark Editorial"
+
+  Rules this system enforces:
+  - One accent colour only, and one filled accent element per screen. Mint is
+    cool and mid-chroma on purpose: a full-saturation accent on near-black is
+    the harshest contrast a screen can produce, and it stops being a signal
+    once everything shouts. Filled = the single primary action. Everything
+    else that carries the accent does it with text or a hairline.
+  - No gradients, no blur, no glass.
+  - Corners are 6px. Deliberate, not pill-shaped.
+  - Type is large and confident. Nothing below 12px carries meaning.
+  - Surfaces separate by hairline borders first, lightness second.
+*/
+
+:root {
+  /* Surfaces: near-black, cooled by a trace of green so mint feels native. */
+  --bg: #08090a;
+  --surface: #0e1011;
+  --surface-raised: #15181a;
+  --surface-sunken: #050506;
+
+  /* Hairlines do the structural work. */
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+
+  /* Text ramp. */
+  --text: #f1f3f1;
+  --text-secondary: #9ea3a0;
+  --text-muted: #676c6a;
+
+  /* The single accent: cool mint, deliberately below full chroma. */
+  --accent: #74d8b4;
+  --accent-ink: #04150f;
+  --accent-wash: rgba(116, 216, 180, 0.12);
+  --accent-line: rgba(116, 216, 180, 0.34);
+  --accent-dim: #8fe3c4;
+
+  --danger: #ff6f5e;
+  --danger-wash: rgba(255, 111, 94, 0.12);
+
+  /*
+    Mood hues. These are the one deliberate exception to the single-accent
+    rule, and they earn it: a mood is a category, and categories are what
+    colour is genuinely good at. They are held to the same discipline as the
+    accent — mid-chroma, never a filled block, always text plus a 12% wash —
+    so seven of them in a row still read as one family instead of confetti.
+    Green is skipped on purpose; that wavelength belongs to the accent.
+  */
+  --mood-sad: #7aa7d8;
+  --mood-sad-wash: rgba(122, 167, 216, 0.12);
+  --mood-love: #e58aa4;
+  --mood-love-wash: rgba(229, 138, 164, 0.12);
+  --mood-happy: #e8c86a;
+  --mood-happy-wash: rgba(232, 200, 106, 0.12);
+  --mood-nostalgic: #bfa07f;
+  --mood-nostalgic-wash: rgba(191, 160, 127, 0.12);
+  --mood-chill: #a99ce0;
+  --mood-chill-wash: rgba(169, 156, 224, 0.12);
+  --mood-upbeat: #f0996b;
+  --mood-upbeat-wash: rgba(240, 153, 107, 0.12);
+  --mood-campfire: #d4735e;
+  --mood-campfire-wash: rgba(212, 115, 94, 0.12);
+
+  /* Anything the user invents falls back to plain text, not a random hue. */
+  --mood-default: var(--text-secondary);
+  --mood-default-wash: rgba(255, 255, 255, 0.05);
+
+  /* Geometry. */
+  --radius: 6px;
+  --radius-sm: 4px;
+  --border: 1px solid var(--line);
+
+  /* Spacing scale, 4px based. */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+
+  /* Type. */
+  --font:
+    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:
+    ui-monospace, "SFMono-Regular", "Cascadia Mono", "Liberation Mono", Menlo,
+    Consolas, monospace;
+
+  --fs-stat: 40px;
+  --fs-display: 30px;
+  --fs-title: 20px;
+  --fs-body: 15px;
+  --fs-small: 13px;
+  --fs-label: 11px;
+
+  --lh-tight: 1.08;
+  --lh-body: 1.5;
+  --tracking-label: 0.14em;
+  --tracking-display: -0.022em;
+
+  /* Chord sheet size is user-adjustable and persisted. */
+  --sheet-size: 15px;
+
+  /* Motion: quick and flat. No bounce. */
+  --dur: 120ms;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+
+  /* Layout. */
+  --measure: 720px;
+  --nav-height: 60px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 0ms;
+  }
+}

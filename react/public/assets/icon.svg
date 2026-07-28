@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SongUnlocked">
+  <title>SongUnlocked</title>
+  <rect width="512" height="512" rx="112" fill="#08090a" />
+  <!-- Shackle, open on the right: the song is unlocked. -->
+  <path
+    d="M168 232v-34a88 88 0 0 1 168-24"
+    fill="none"
+    stroke="#b8ff3c"
+    stroke-width="28"
+    stroke-linecap="round"
+  />
+  <rect x="124" y="232" width="264" height="176" rx="36" fill="#b8ff3c" />
+  <!-- Keyhole cut as a note head with a short stem. -->
+  <circle cx="256" cy="302" r="26" fill="#08090a" />
+  <rect x="242" y="302" width="28" height="66" rx="14" fill="#08090a" />
+</svg>

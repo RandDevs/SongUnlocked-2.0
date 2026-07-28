@@ -1,0 +1,6 @@
+node_modules/
+dist/
+qa-logs/
+recon.txt
+test-results/
+
