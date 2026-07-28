@@ -1,11 +1,3 @@
-/**
- * Settings: your data, and how to get it out.
- *
- * Everything lives on this device only, so export is not a nice-to-have — it is
- * the only way a library survives a cleared browser. Import offers Merge before
- * Replace because Merge cannot destroy anything.
- */
-
 import { h, fill } from "../dom.js";
 import { icon } from "../icons.js";
 import * as store from "../store.js";
@@ -38,8 +30,8 @@ export function settingsView(ctx: ViewContext): ViewInstance {
     id: "import-mode",
     labelledBy: "import-mode-label",
     options: [
-      { value: "merge", label: "Merge \u2014 add what is new" },
-      { value: "replace", label: "Replace \u2014 wipe, then load" },
+      { value: "merge", label: "Merge: add what is new" },
+      { value: "replace", label: "Replace: wipe, then load" },
     ],
   });
 
@@ -235,7 +227,7 @@ export function settingsView(ctx: ViewContext): ViewInstance {
         h(
           "p",
           { class: "hint" },
-          "SongUnlocked 1.0 \u2014 an offline songbook for tracking what you can actually play. No account, no server, no third-party code.",
+          "SongUnlocked is an offline songbook for tracking what you can actually play. No account, no server, no third-party code.",
         ),
       ),
     ),
