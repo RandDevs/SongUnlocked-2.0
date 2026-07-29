@@ -158,11 +158,11 @@ export function songView(ctx: ViewContext, songId: string): ViewInstance {
       async onConfirm() {
         try {
           await store.updateSong(songId, form.values());
-          ctx.toast("Changes saved.");
+          ctx.toast("Changes saved");
           return true;
         } catch (error) {
           ctx.toast(
-            error instanceof Error ? error.message : "Could not save changes.",
+            error instanceof Error ? error.message : "Could not save changes",
             { error: true },
           );
           return false;
@@ -181,7 +181,7 @@ export function songView(ctx: ViewContext, songId: string): ViewInstance {
       confirmLabel: "Delete song",
       async onConfirm() {
         await store.deleteSong(songId);
-        ctx.toast(`"${current.title}" deleted.`);
+        ctx.toast(`"${current.title}" deleted`);
         ctx.navigate("#/library");
       },
     });
@@ -190,10 +190,10 @@ export function songView(ctx: ViewContext, songId: string): ViewInstance {
   async function markMastered(): Promise<void> {
     try {
       const updated = await store.toggleStatus(songId);
-      ctx.toast(`Marked as ${store.statusLabel(updated.status)}.`);
+      ctx.toast(`Marked as ${store.statusLabel(updated.status)}`);
     } catch (error) {
       ctx.toast(
-        error instanceof Error ? error.message : "Could not update the status.",
+        error instanceof Error ? error.message : "Could not update the status",
         { error: true },
       );
     }

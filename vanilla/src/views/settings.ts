@@ -52,9 +52,9 @@ export function settingsView(ctx: ViewContext): ViewInstance {
           instruments: store.getInstruments(),
         }),
       );
-      ctx.toast("Backup downloaded.");
+      ctx.toast("Backup downloaded");
     } catch (error) {
-      ctx.toast(error instanceof Error ? error.message : "Export failed.", {
+      ctx.toast(error instanceof Error ? error.message : "Export failed", {
         error: true,
       });
     }
@@ -63,7 +63,7 @@ export function settingsView(ctx: ViewContext): ViewInstance {
   async function importNow(): Promise<void> {
     const file = fileInput.files?.[0];
     if (!file) {
-      ctx.toast("Choose a backup file first.", { error: true });
+      ctx.toast("Choose a backup file first", { error: true });
       return;
     }
 
@@ -76,7 +76,7 @@ export function settingsView(ctx: ViewContext): ViewInstance {
         await store.applyImport(data, mode);
         fileInput.value = "";
         ctx.toast(
-          `Imported ${data.songs.length} song${data.songs.length === 1 ? "" : "s"}.`,
+          `Imported ${data.songs.length} song${data.songs.length === 1 ? "" : "s"}`,
         );
       };
 
@@ -93,7 +93,7 @@ export function settingsView(ctx: ViewContext): ViewInstance {
       await apply();
     } catch (error) {
       ctx.toast(
-        error instanceof Error ? error.message : "That file could not be read.",
+        error instanceof Error ? error.message : "That file could not be read",
         { error: true },
       );
     }
@@ -107,7 +107,7 @@ export function settingsView(ctx: ViewContext): ViewInstance {
       confirmLabel: "Delete everything",
       async onConfirm() {
         await store.resetAll();
-        ctx.toast("Library reset to the sample content.");
+        ctx.toast("Library reset to the sample content");
       },
     });
   }

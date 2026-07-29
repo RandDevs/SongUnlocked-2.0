@@ -42,7 +42,7 @@ export function instrumentsView(ctx: ViewContext): ViewInstance {
         try {
           const created = await store.addInstrument(nameInput.value);
           nameInput.value = "";
-          ctx.toast(`${created.name} added.`);
+          ctx.toast(`${created.name} added`);
         } catch (error) {
           fail(error);
         } finally {
@@ -84,7 +84,7 @@ export function instrumentsView(ctx: ViewContext): ViewInstance {
       async onConfirm() {
         try {
           await store.renameInstrument(instrument.id, field.value);
-          ctx.toast("Instrument renamed.");
+          ctx.toast("Instrument renamed");
           return true;
         } catch (error) {
           fail(error);
@@ -102,7 +102,7 @@ export function instrumentsView(ctx: ViewContext): ViewInstance {
       async onConfirm() {
         try {
           await store.deleteInstrument(instrument.id);
-          ctx.toast(`${instrument.name} deleted.`);
+          ctx.toast(`${instrument.name} deleted`);
         } catch (error) {
           fail(error);
         }
@@ -177,8 +177,8 @@ export function instrumentsView(ctx: ViewContext): ViewInstance {
                     );
                     ctx.toast(
                       instrument.archived
-                        ? `${instrument.name} restored.`
-                        : `${instrument.name} archived.`,
+                        ? `${instrument.name} restored`
+                        : `${instrument.name} archived`,
                     );
                   } catch (error) {
                     fail(error);

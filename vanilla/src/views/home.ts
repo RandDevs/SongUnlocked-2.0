@@ -51,7 +51,7 @@ export function homeView(ctx: ViewContext): ViewInstance {
 
         const title = titleInput.value.trim();
         if (!title) {
-          ctx.toast("Give the song a title first.", { error: true });
+          ctx.toast("Give the song a title first", { error: true });
           titleInput.focus();
           return;
         }
@@ -63,7 +63,7 @@ export function homeView(ctx: ViewContext): ViewInstance {
             status: "mastered",
           });
           titleInput.value = "";
-          ctx.toast(`"${title}" saved as Mastered.`);
+          ctx.toast(`"${title}" saved as Mastered`);
         } catch (error) {
           ctx.toast(messageOf(error), { error: true });
         } finally {

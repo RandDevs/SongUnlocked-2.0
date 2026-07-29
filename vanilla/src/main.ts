@@ -40,6 +40,8 @@ const ctx: ViewContext = {
 };
 
 let current: ViewInstance | null = null;
+let currentRouteIndex = -1;
+const MAIN_TABS = ["home", "library", "instruments", "settings"];
 
 function parseRoute(): { route: string; param: string } {
   const raw = location.hash.replace(/^#\/?/, "");
@@ -50,46 +52,66 @@ function parseRoute(): { route: string; param: string } {
 function render(): void {
   const { route, param } = parseRoute();
 
-  for (const dialog of document.querySelectorAll("dialog[open]")) {
-    (dialog as HTMLDialogElement).close();
+  const updateDOM = () => {
+    for (const dialog of document.querySelectorAll("dialog[open]")) {
+      (dialog as HTMLDialogElement).close();
+    }
+
+    if (current?.cleanup) current.cleanup();
+    current = null;
+
+    let view: ViewInstance;
+
+    switch (route) {
+      case "library":
+        view = libraryView(ctx);
+        break;
+      case "song":
+        view = songView(ctx, param);
+        break;
+      case "instruments":
+        view = instrumentsView(ctx);
+        break;
+      case "settings":
+        view = settingsView(ctx);
+        break;
+      case "home":
+        view = homeView(ctx);
+        break;
+      default:
+        view = {
+          node: h(
+            "div",
+            { class: "empty" },
+            h("p", { class: "empty__title" }, "Nothing here"),
+            h("a", { class: "btn", href: "#/home" }, "Go home"),
+          ),
+        };
+    }
+
+    current = view;
+    shell.setActiveTab(route === "song" ? "library" : route);
+    fill(shell.main, view.node);
+    window.scrollTo(0, 0);
+  };
+
+  const newIndex = MAIN_TABS.indexOf(route);
+  const isTab = newIndex !== -1;
+  const supportsTransition = "startViewTransition" in document;
+
+  // Only animate if moving between known tabs and not on the first load.
+  if (supportsTransition && currentRouteIndex !== -1 && isTab && newIndex !== currentRouteIndex) {
+    const direction = newIndex > currentRouteIndex ? "right" : "left";
+    document.documentElement.dataset.transition = direction;
+    const transition = (document as any).startViewTransition(updateDOM);
+    transition.finished.finally(() => {
+      delete document.documentElement.dataset.transition;
+    });
+  } else {
+    updateDOM();
   }
 
-  if (current?.cleanup) current.cleanup();
-  current = null;
-
-  let view: ViewInstance;
-
-  switch (route) {
-    case "library":
-      view = libraryView(ctx);
-      break;
-    case "song":
-      view = songView(ctx, param);
-      break;
-    case "instruments":
-      view = instrumentsView(ctx);
-      break;
-    case "settings":
-      view = settingsView(ctx);
-      break;
-    case "home":
-      view = homeView(ctx);
-      break;
-    default:
-      view = {
-        node: h(
-          "div",
-          { class: "empty" },
-          h("p", { class: "empty__title" }, "Nothing here"),
-          h("a", { class: "btn", href: "#/home" }, "Go home"),
-        ),
-      };
-  }
-
-  current = view;
-  shell.setActiveTab(route === "song" ? "library" : route);
-  fill(shell.main, view.node);
-  window.scrollTo(0, 0);
+  if (isTab) currentRouteIndex = newIndex;
 }
 
 window.addEventListener("hashchange", render);

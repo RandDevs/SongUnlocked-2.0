@@ -330,7 +330,7 @@ export function libraryView(ctx: ViewContext): ViewInstance {
 
   function openNewSongDialog(): void {
     if (store.getActiveInstruments().length === 0) {
-      ctx.toast("Add an instrument before adding songs.", { error: true });
+      ctx.toast("Add an instrument before adding songs", { error: true });
       return;
     }
 
@@ -343,11 +343,11 @@ export function libraryView(ctx: ViewContext): ViewInstance {
       async onConfirm() {
         try {
           const song = await store.addSong(form.values());
-          ctx.toast(`"${song.title}" added.`);
+          ctx.toast(`"${song.title}" added`);
           return true;
         } catch (error) {
           ctx.toast(
-            error instanceof Error ? error.message : "Could not save the song.",
+            error instanceof Error ? error.message : "Could not save the song",
             { error: true },
           );
           return false;
