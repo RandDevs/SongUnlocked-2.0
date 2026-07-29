@@ -123,7 +123,6 @@ svg {
   position: sticky;
   top: 0;
   z-index: 10;
-  view-transition-name: masthead;
 }
 
 .masthead::before {
@@ -187,7 +186,6 @@ svg {
   -webkit-backdrop-filter: blur(12px);
   border-top: var(--border);
   padding-bottom: env(safe-area-inset-bottom, 0);
-  view-transition-name: bottom-nav;
 }
 
 .nav__item {
@@ -1550,6 +1548,14 @@ svg {
 }
 
 /* ---------- View Transitions ---------- */
+
+html[data-transition] .masthead {
+  view-transition-name: masthead;
+}
+
+html[data-transition] .nav {
+  view-transition-name: bottom-nav;
+}
 
 ::view-transition-group(masthead),
 ::view-transition-group(bottom-nav) {
